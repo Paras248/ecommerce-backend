@@ -23,7 +23,18 @@ app.use(express.urlencoded({ extended: true }));
 
 // cookies and fileUpload middleware
 app.use(cookieParser());
-app.use(fileUpload());
+app.use(
+	fileUpload({
+		useTempFiles: true,
+		tempFileDir: "/tmp/",
+	})
+);
+
+// temp check - for image upload ejs view engine
+app.set("view engine", "ejs");
+app.get("/signuptest", (req, res) => {
+	res.render("signupTest");
+});
 
 //morgan middleware
 app.use(morgan("tiny"));
