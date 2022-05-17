@@ -92,77 +92,62 @@ paths:
                     description: date
                   _v: 
                     type: string
-                    description: version                    
+                    description: version
+
+  /login:
+    post:
+      tags:
+        - User
+      summary: To login the user
+      requestBody:
+          required: true
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  email: 
+                    type: string
+                  password:
+                    type: string
+      responses:
+        201:
+          description: SUCCESS
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  token: 
+                    type: string
+                  user:
+                    type: object
+                    properties:
+                      name: 
+                        type: string
+                      email:
+                        type: string
+                      photo: 
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: photo id from cloudinary
+                          secure_url: 
+                            type: string
+                            description: url of the uploaded image
+                  role:
+                    type: string
+                  _id:
+                    type: string
+                    description: id of the document from the database
+                  createdAt: 
+                    type: string
+                    description: date
+                  _v: 
+                    type: string
+                    description: version
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# openapi: 3.0.0
-# info: 
-#   title: E-commerce API
-#   description: Creation of API for e-commerce store
-#   version: 1.0.0
-#   contact: 
-#     email: paraspatil248@gmail.com
-
-# servers: 
-#   - url: "{protocol}://localhost:4000/api/{version}"
-#     description: for localhost
-#     variables: 
-#       version:
-#         enum: 
-#           - v1
-
-#         default: v1
-#       protocol:
-#         enum:
-#           - http
-#           - https
-#         default: http
-
-# components: 
-#   securitySchemes:
-#     cookieAuth:
-#       type: apiKey
-#       in: cookie
-#       name: token
-#     BearerAuth:
-#       type: http
-#       scheme: bearer
-
-# paths: 
-#   /dummy:
-#     get:
-#       tags:
-#         - Home page
-#       summary: returns a greet from servers
-#       responses: 
-#         200:
-#           description: All good success
-#         400: 
-#           description: Bad request
-#         500: 
-#           description: internal server error
