@@ -72,7 +72,7 @@ userSchema.methods.getJwtToken = function () {
 // generate forgot password token (string)
 userSchema.methods.getForgotPasswordToken = function () {
 	// generates a long and random string
-	const forgotToken = crypto.randomByte(20).toString("hex");
+	const forgotToken = crypto.randomBytes(20).toString("hex");
 
 	// getting a hash - make sure to get a hash on backend
 

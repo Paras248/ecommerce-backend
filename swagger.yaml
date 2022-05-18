@@ -149,5 +149,29 @@ paths:
                   _v: 
                     type: string
                     description: version
+      400: 
+        description: BAD REQUEST
+      500: 
+        description: INTERNAL SERVER ERROR
 
-
+  /logout:
+    get:
+      tags: 
+        - User
+      summary: logs out the user
+      responses:
+        200: 
+          description: SUCCESS
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success: 
+                    type: boolean
+                  message:
+                    type: string
+        400: 
+          description: BAD REQUEST
+        500: 
+          description: INTERNAL SERVER ERROR
