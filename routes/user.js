@@ -15,6 +15,7 @@ const {
 	managerAllUsers,
 	adminGetOneUser,
 	adminUpdateOneUser,
+	adminDeleteOneUser,
 } = require("../controllers/userController");
 
 const { isLoggedIn, customRole } = require("../middlewares/user");
@@ -26,7 +27,7 @@ router.route("/forgotpassword").post(forgotPassword);
 router.route("/password/reset/:token").post(passwordReset);
 router.route("/userdashboard").get(isLoggedIn, getLoggedInUserDetails);
 router.route("/password/update").post(isLoggedIn, changePassword);
-router.route("/userdashboard/update").post(isLoggedIn, updateUserDetails);
+router.route("/userdashboard/update").put(isLoggedIn, updateUserDetails);
 
 // admin routes
 
@@ -36,11 +37,10 @@ router
 
 router
 	.route("/admin/user/:id")
-	.get(isLoggedIn, customRole("admin"), adminGetOneUser);
+	.get(isLoggedIn, customRole("admin"), adminGetOneUser)
+	.put(isLoggedIn, customRole("admin"), adminGetOneUser)
+	.delete(isLoggedIn, customRole("admin"), adminDeleteOneUser);
 
-router
-	.route("/admin/user/:id")
-	.post(isLoggedIn, customRole("admin"), adminUpdateOneUser);
 // manager routes
 router
 	.route("/manager/users")
