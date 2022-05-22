@@ -20,7 +20,7 @@ exports.isLoggedIn = BigPromise(async (req, res, next) => {
 	next();
 });
 
-exports.isAdmin = (...roles) => {
+exports.customRole = (...roles) => {
 	return (req, res, next) => {
 		if (!roles.includes(req.user.role)) {
 			return next(

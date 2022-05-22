@@ -238,3 +238,41 @@ exports.adminAllUsers = BigPromise(async (req, res, next) => {
 		users,
 	});
 });
+
+exports.adminGetOneUser = BigPromise(async (req, res, next) => {
+	const user = await User.findById(req.params.id);
+	if (!user) {
+		return next(new CustomError("User not found", 400));
+	}
+	res.status(200).json({
+		success: true,
+		user,
+	});
+});
+
+exports.managerAllUsers = BigPromise(async (req, res, next) => {
+	const users = await User.find({ role: "user" });
+
+	res.status(200).json({
+		succes: true,
+		users,
+	});
+});
+
+exports.adminUpdateOneUser = BigPromise(async (req, res, next) => {
+	const userId = req.params.id;
+	const newData = {
+		role: req.body.role,
+	};
+
+	const user = await User.findByIdAndUpdate(userId, newData, {
+		new: true,
+		runValidators: true,
+		useFindAndModify: false,
+	});
+
+	res.status(200).json({
+		success: true,
+		user,
+	});
+});
