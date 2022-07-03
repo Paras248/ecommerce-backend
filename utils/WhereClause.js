@@ -30,4 +30,22 @@ class WhereClause {
 
     return this;
   }
+
+  filter() {
+    const copyQ = { ...this.bigQ };
+
+    delete copyQ["search"];
+    delete copyQ["limit"];
+    delete copyQ["page"];
+
+    let stringOfCopy = JSON.stringify(copyQ);
+
+    stringOfCopy = stringOfCopy.replace(/\b(gte|lte|gt|lt)\b/g, (m) => `$${m}`);
+
+    const jsonOfCopyQ = JSON.parse(stringOfCopy);
+
+    this.base = this.base.find(jsonOfCopyQ);
+  }
 }
+
+module.exports = WhereClause;
