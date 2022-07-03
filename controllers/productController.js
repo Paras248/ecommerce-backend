@@ -47,7 +47,7 @@ exports.getAllProduct = BigPromise(async (req, res, next) => {
     .search()
     .filter();
 
-  let products = productsObj.base;
+  let products = await productsObj.base.clone();
 
   const filteredProductNumber = products.length;
 
