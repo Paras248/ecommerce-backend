@@ -25,4 +25,14 @@ exports.addProduct = BigPromise(async (req, res, next) => {
       });
     }
   }
+
+  req.body.photos = imageArray;
+  req.body.user = req.user.id;
+
+  const product = await Product.create(req.body);
+
+  req.status(201).json({
+    success: true,
+    product,
+  });
 });
