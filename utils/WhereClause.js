@@ -45,6 +45,8 @@ class WhereClause {
     const jsonOfCopyQ = JSON.parse(stringOfCopy);
 
     this.base = this.base.find(jsonOfCopyQ);
+
+    return this;
   }
 }
 

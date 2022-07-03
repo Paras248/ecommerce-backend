@@ -43,13 +43,17 @@ exports.getAllProduct = BigPromise(async (req, res, next) => {
 
   const totalCountProduct = await Product.countDocuments();
 
-  const products = new WhereClause(Product.find(), req.query).search().filter();
+  const productsObj = new WhereClause(Product.find(), req.query)
+    .search()
+    .filter();
+
+  let products = productsObj.base;
 
   const filteredProductNumber = products.length;
 
-  products.pager(resultPerPage);
+  productsObj.pager(resultPerPage);
 
-  products = await products.base;
+  products = await productsObj.base;
 
   res.status(200).json({
     success: true,
