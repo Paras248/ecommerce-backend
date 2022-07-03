@@ -12,9 +12,9 @@ exports.addProduct = BigPromise(async (req, res, next) => {
   }
 
   if (req.files) {
-    for (let index = 0; index < req.files.photos.length(); i++) {
+    for (let index = 0; index < req.files.photos.length; index++) {
       let result = await cloudinary.uploader.upload(
-        req.files.photos[i].tempFilePath,
+        req.files.photos[index].tempFilePath,
         {
           folder: "products",
         }
@@ -32,7 +32,7 @@ exports.addProduct = BigPromise(async (req, res, next) => {
 
   const product = await Product.create(req.body);
 
-  req.status(201).json({
+  res.status(201).json({
     success: true,
     product,
   });

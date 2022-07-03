@@ -31,10 +31,10 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: [
       true,
-      "please provide product category from - 1. Fashion 2. Electronics 3. Digital 4. Furniture",
+      "please provide product category from - 1. Fashion 2. Electronics 3. Digital 4. Furniture 5. Decoration",
     ],
     enum: {
-      values: ["Fashion", "Electronics", "Digital", "Furniture"],
+      values: ["Fashion", "Electronics", "Digital", "Furniture", "Decoration"],
       message:
         "Please select only from - . Fashion 2. Electronics 3. Digital 4. Furniture",
     },
