@@ -4,11 +4,13 @@ const {
   addProduct,
   getAllProduct,
   adminGetAllProducts,
+  getSingleProduct,
 } = require("../controllers/productController");
 const { isLoggedIn, customRole } = require("../middlewares/user");
 
 // User routes
 router.route("/products").get(getAllProduct);
+router.route("/product/:id").get(getSingleProduct);
 
 // admin routes
 router
