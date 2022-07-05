@@ -60,3 +60,12 @@ exports.getAllProduct = BigPromise(async (req, res, next) => {
     totalCountProduct,
   });
 });
+
+exports.adminGetAllProducts = BigPromise(async (req, res, next) => {
+  const product = await prouduct.find();
+
+  res.status(200).json({
+    success: true,
+    product,
+  });
+});
