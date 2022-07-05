@@ -26,7 +26,6 @@ exports.addProduct = BigPromise(async (req, res, next) => {
       });
     }
   }
-
   req.body.photos = imageArray;
   req.body.user = req.user.id;
 
@@ -40,7 +39,6 @@ exports.addProduct = BigPromise(async (req, res, next) => {
 
 exports.getAllProduct = BigPromise(async (req, res, next) => {
   const resultPerPage = 6;
-
   const totalCountProduct = await Product.countDocuments();
 
   const productsObj = new WhereClause(Product.find(), req.query)
